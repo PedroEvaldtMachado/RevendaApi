@@ -11,12 +11,13 @@ using RevendaApi.Services.Implementations;
 using RevendaApi.Services.Implementations.Apis;
 using Scalar.AspNetCore;
 using System;
+using System.Threading.Tasks;
 
 namespace RevendaApi;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public async static Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -63,6 +64,10 @@ public class Program
         app.UseAuthorization();
         app.MapControllers();
 
-        app.Run();
+        using var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+        var spScoped = scope.ServiceProvider;
+        await spScoped.GetRequiredService<AppDbContext>().Database.MigrateAsync();
+
+        await app.RunAsync();
     }
 }
