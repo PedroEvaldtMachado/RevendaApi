@@ -34,6 +34,8 @@ public class Program
 
         builder.Services.AddScoped(typeof(Lazy<>));
 
+        builder.Services.AddHttpClient();
+
         builder.Services.AddScoped<BaseQueryParams>();
         builder.Services.AddScoped<IClienteQuery, ClienteQuery>();
         builder.Services.AddScoped<IItemQuery, ItemQuery>();
