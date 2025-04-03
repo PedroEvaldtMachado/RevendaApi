@@ -14,16 +14,7 @@ public class RevendaService : BaseService, IRevendaService
 
     public async Task<RevendaReadDto> Create(RevendaCreateDto dto)
     {
-        var countContatosPrincipais = dto.Contatos.Count(e => e.Principal);
-        if (countContatosPrincipais > 1)
-        {
-            var contatoPrincipal = dto.Contatos.First(e => e.Principal);
-
-            foreach (var contato in dto.Contatos.Where(c => c.Principal && c != contatoPrincipal))
-            {
-                contato.Principal = false;
-            }
-        }
+        SetContatosPrincipais(dto);
 
         var ent = dto.ToEntity();
 
@@ -40,6 +31,8 @@ public class RevendaService : BaseService, IRevendaService
         {
             return null;
         }
+
+        SetContatosPrincipais(dto);
 
         dto.CopyTo(ent);
         await DbContext.Value.SaveChangesAsync();
@@ -59,5 +52,18 @@ public class RevendaService : BaseService, IRevendaService
         await DbContext.Value.SaveChangesAsync();
 
         return true;
+    }
+
+    private void SetContatosPrincipais(RevendaCreateDto dto)
+    {
+        var countContatosPrincipais = dto.Contatos.Count(e => e.Principal);
+        if (countContatosPrincipais > 1)
+        {
+            var contatoPrincipal = dto.Contatos.First(e => e.Principal);
+            foreach (var contato in dto.Contatos.Where(c => c.Principal && c != contatoPrincipal))
+            {
+                contato.Principal = false;
+            }
+        }
     }
 }
