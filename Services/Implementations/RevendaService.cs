@@ -66,4 +66,17 @@ public class RevendaService : BaseService, IRevendaService
             }
         }
     }
+
+    private void SetContatosPrincipais(RevendaUpdateDto dto)
+    {
+        var countContatosPrincipais = dto.Contatos.Count(e => e.Principal);
+        if (countContatosPrincipais > 1)
+        {
+            var contatoPrincipal = dto.Contatos.First(e => e.Principal);
+            foreach (var contato in dto.Contatos.Where(c => c.Principal && c != contatoPrincipal))
+            {
+                contato.Principal = false;
+            }
+        }
+    }
 }
