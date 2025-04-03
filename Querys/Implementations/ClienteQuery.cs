@@ -25,7 +25,10 @@ public class ClienteQuery : BaseQuery, IClienteQuery
 
     public async Task<ClienteReadDto> GetById(Guid id)
     {
-        var ent = await DbContext.Value.Clientes.FindAsync(id);
+        var ent = await DbContext.Value.Clientes
+            .Include(c => c.Endereco)
+            .FirstOrDefaultAsync(c => c.Id == id);
+
         return ent?.ToDto();
     }
 }

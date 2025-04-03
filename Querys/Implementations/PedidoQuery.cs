@@ -19,6 +19,7 @@ public class PedidoQuery : BaseQuery, IPedidoQuery
     { 
         var query =
             from pedido in DbContext.Value.Pedidos
+                .Include(p => p.Itens)
             select pedido.ToDto();
 
         return await query.ToListAsync();
@@ -28,6 +29,7 @@ public class PedidoQuery : BaseQuery, IPedidoQuery
     {
         var query =
             from pedido in DbContext.Value.Pedidos
+                .Include(p => p.Itens)
             where pedido.Id == id
             select pedido.ToDto();
 
@@ -38,6 +40,7 @@ public class PedidoQuery : BaseQuery, IPedidoQuery
     {
         var query =
             from pedido in DbContext.Value.Pedidos
+                .Include(p => p.Itens)
             where pedido.ClienteId == clienteId
             select pedido.ToDto();
 
@@ -48,6 +51,7 @@ public class PedidoQuery : BaseQuery, IPedidoQuery
     {
         var query =
             from pedido in DbContext.Value.Pedidos
+                .Include(p => p.Itens)
             where pedido.RevendaId == revendaId
             select pedido.ToDto();
 

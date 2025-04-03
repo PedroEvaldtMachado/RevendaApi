@@ -35,7 +35,10 @@ public class ItemQuery : BaseQuery, IItemQuery
 
     public async Task<ItemReadDto> GetById(Guid id)
     {
-        var ent = await DbContext.Value.Itens.FindAsync(id);
+        var ent = await DbContext.Value.Itens
+            .Include(c => c.Estoques)
+            .FirstOrDefaultAsync(c => c.Id == id);
+
         if (ent is null)
         {
             return null;

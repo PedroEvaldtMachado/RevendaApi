@@ -27,6 +27,8 @@ public class RevendaQuery : BaseQuery, IRevendaQuery
     {
         var revenda =
             from rev in DbContext.Value.Revendas
+                .Include(r => r.Contatos)
+                .Include(r => r.Enderecos)
             where rev.Id == id
             select rev.ToDto();
 

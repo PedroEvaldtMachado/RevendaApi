@@ -1,6 +1,7 @@
 ﻿using RevendaApi.Dtos.Revendas;
 using RevendaApi.Profiles;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace RevendaApi.Services.Implementations;
@@ -13,6 +14,17 @@ public class RevendaService : BaseService, IRevendaService
 
     public async Task<RevendaReadDto> Create(RevendaCreateDto dto)
     {
+        var countContatosPrincipais = dto.Contatos.Count(e => e.Principal);
+        if (countContatosPrincipais > 1)
+        {
+            var contatoPrincipal = dto.Contatos.First(e => e.Principal);
+
+            foreach (var contato in dto.Contatos.Where(c => c.Principal && c != contatoPrincipal))
+            {
+                contato.Principal = false;
+            }
+        }
+
         var ent = dto.ToEntity();
 
         await DbContext.Value.Revendas.AddAsync(ent);
