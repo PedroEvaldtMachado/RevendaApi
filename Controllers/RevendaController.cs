@@ -58,7 +58,7 @@ public class RevendaController : BaseController
     }
 
     [HttpPost("{revendaId:guid}/PedidoFabrica")]
-    public async Task<ActionResult<FabricaApiPedidoReadDto>> CreatePedidoFabrica(Guid revendaId, List<FabricaApiPedidoItemCreateDto> dto)
+    public async Task<ActionResult<FabricaApiPedidoReadDto>> CreatePedidoFabrica(Guid revendaId, List<RevendaPedidoFabricaCreate> dto)
     {
         var result = await _fabricaService.Value.CreatePedido(revendaId, dto);
         return result is null ? NoContent() : Ok(result);

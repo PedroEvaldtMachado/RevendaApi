@@ -8,5 +8,6 @@ namespace RevendaApi.Querys;
 public interface IItemQuery
 {
     Task<List<ItemReadDto>> GetAll();
+    Task<List<ItemReadDto>> GetByIds(IEnumerable<Guid> ids);
     Task<ItemReadDto> GetById(Guid id);
 }

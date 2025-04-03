@@ -21,7 +21,17 @@ public class ItemQuery : BaseQuery, IItemQuery
             select item.ToDto();
 
         return await query.ToListAsync();
-    }   
+    }
+
+    public async Task<List<ItemReadDto>> GetByIds(IEnumerable<Guid> ids)
+    {
+        var query =
+            from item in DbContext.Value.Itens
+            where ids.Contains(item.Id)
+            select item.ToDto();
+
+        return await query.ToListAsync();
+    }
 
     public async Task<ItemReadDto> GetById(Guid id)
     {
