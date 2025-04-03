@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using RevendaApi.Dtos.Enderecos;
 
 namespace RevendaApi.Dtos.Revendas;
 
@@ -19,5 +20,5 @@ public class RevendaReadDto
 
     public List<RevendaContatoReadDto> Contatos { get; set; } = [];
 
-    public List<RevendaEnderecoReadDto> Enderecos { get; set; } = [];
+    public List<EnderecoReadDto> Enderecos { get; set; } = [];
 }

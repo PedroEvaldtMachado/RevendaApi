@@ -2,7 +2,7 @@
 #pragma warning disable RMG020 // Source member is not mapped to any target member
 
 using RevendaApi.Dtos.Revendas;
-using RevendaApi.Models;
+using RevendaApi.Models.Revendas;
 using Riok.Mapperly.Abstractions;
 
 namespace RevendaApi.Profiles

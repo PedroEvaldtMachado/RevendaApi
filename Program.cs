@@ -6,7 +6,9 @@ using RevendaApi.Data;
 using RevendaApi.Querys;
 using RevendaApi.Querys.Implementations;
 using RevendaApi.Services;
+using RevendaApi.Services.Apis;
 using RevendaApi.Services.Implementations;
+using RevendaApi.Services.Implementations.Apis;
 using Scalar.AspNetCore;
 using System;
 
@@ -33,10 +35,18 @@ public class Program
         builder.Services.AddScoped(typeof(Lazy<>));
 
         builder.Services.AddScoped<BaseQueryParams>();
+        builder.Services.AddScoped<IClienteQuery, ClienteQuery>();
+        builder.Services.AddScoped<IItemQuery, ItemQuery>();
+        builder.Services.AddScoped<IPedidoQuery, PedidoQuery>();
         builder.Services.AddScoped<IRevendaQuery, RevendaQuery>();
 
         builder.Services.AddScoped<BaseServiceParams>();
+        builder.Services.AddScoped<IClienteService, ClienteService>();
+        builder.Services.AddScoped<IItemService, ItemService>();
+        builder.Services.AddScoped<IPedidoService, PedidoService>();
         builder.Services.AddScoped<IRevendaService, RevendaService>();
+        builder.Services.AddScoped<IFabricaService, FabricaService>();
+        builder.Services.AddScoped<IFabricaApiService, FabricaApiServiceMock>();
 
         builder.Services.AddControllers();
         builder.Services.AddAuthorization();

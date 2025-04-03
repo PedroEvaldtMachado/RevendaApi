@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace RevendaApi.Models;
+namespace RevendaApi.Models.Revendas;
 
 public class RevendaContato
 {

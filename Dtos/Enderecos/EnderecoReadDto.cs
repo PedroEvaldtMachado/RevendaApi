@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace RevendaApi.Dtos.Revendas;
+namespace RevendaApi.Dtos.Enderecos;
 
-public class RevendaEnderecoCreateDto
+public class EnderecoReadDto
 {
     public Guid Id { get; set; }
 

@@ -6,31 +6,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RevendaApi.Querys.Implementations
+namespace RevendaApi.Querys.Implementations;
+
+public class RevendaQuery : BaseQuery, IRevendaQuery
 {
-    public class RevendaQuery : BaseQuery, IRevendaQuery
+    public RevendaQuery(BaseQueryParams baseParams) : base(baseParams)
     {
-        public RevendaQuery(BaseQueryParams baseParams) : base(baseParams)
-        {
-        }
+    }
 
-        public async Task<IEnumerable<RevendaReadDto>> GetAll()
-        {
-            var revendas = 
-                from rev in DbContext.Value.Revendas
-                select rev.ToDto();
+    public async Task<IEnumerable<RevendaReadDto>> GetAll()
+    {
+        var revendas = 
+            from rev in DbContext.Value.Revendas
+            select rev.ToDto();
 
-            return await revendas.ToListAsync();
-        }
+        return await revendas.ToListAsync();
+    }
 
-        public async Task<RevendaReadDto> GetById(Guid id)
-        {
-            var revenda =
-                from rev in DbContext.Value.Revendas
-                where rev.Id == id
-                select rev.ToDto();
+    public async Task<RevendaReadDto> GetById(Guid id)
+    {
+        var revenda =
+            from rev in DbContext.Value.Revendas
+            where rev.Id == id
+            select rev.ToDto();
 
-            return await revenda.FirstOrDefaultAsync();
-        }
+        return await revenda.FirstOrDefaultAsync();
     }
 }

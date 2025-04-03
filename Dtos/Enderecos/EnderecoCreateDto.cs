@@ -1,11 +1,7 @@
-﻿using System;
+﻿namespace RevendaApi.Dtos.Enderecos;
 
-namespace RevendaApi.Dtos.Revendas;
-
-public class RevendaEnderecoReadDto
+public class EnderecoCreateDto
 {
-    public Guid Id { get; set; }
-
     public string Logradouro { get; set; }
 
     public string Numero { get; set; }

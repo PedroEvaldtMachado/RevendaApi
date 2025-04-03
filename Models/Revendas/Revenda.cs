@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace RevendaApi.Models;
+namespace RevendaApi.Models.Revendas;
 
 public class Revenda
 {
@@ -25,6 +25,5 @@ public class Revenda
 
     public virtual List<RevendaContato> Contatos { get; set; } = [];
 
-    public virtual List<RevendaEndereco> Enderecos { get; set; } = [];
-
+    public virtual List<Endereco> Enderecos { get; set; } = [];
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using RevendaApi.Dtos.Enderecos;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace RevendaApi.Dtos.Revendas;
@@ -21,5 +22,5 @@ public class RevendaCreateDto
 
     public List<RevendaContatoCreateDto> Contatos { get; set; } = [];
 
-    public List<RevendaEnderecoCreateDto> Enderecos { get; set; } = [];
+    public List<EnderecoCreateDto> Enderecos { get; set; } = [];
 }
